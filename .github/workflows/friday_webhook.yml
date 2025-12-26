@@ -1,8 +1,8 @@
 name: Send Friday Webhook
 on:
-  workflow_dispatch: # 직접 실행 버튼을 생성함
+  workflow_dispatch:
   schedule:
-    - cron: '0 7 * * 5' # 매주 금요일 한국 시간 오후 4시 (UTC 07:00)
+    - cron: '0 7 * * 5'
 
 jobs:
   send_webhook:
@@ -10,9 +10,7 @@ jobs:
     steps:
       - name: Send KakaoWork Message
         run: |
-          curl -X POST "https://kakaowork.com/bots/hook/55818b68831347139dbb65199eee3031" \
-          -H "Content-Type: application/json" \
-          -d @- <<EOF
+          cat << 'EOF' > payload.json
           {
             "text": "주간 업무 알림",
             "blocks": [
