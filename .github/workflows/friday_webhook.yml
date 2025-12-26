@@ -8,39 +8,34 @@ jobs:
   send_webhook:
     runs-on: ubuntu-latest
     steps:
-      - name: Send KakaoWork Block Kit Message
+	      - name: Send KakaoWork Block Kit Message
         run: |
           curl -X POST "https://kakaowork.com/bots/hook/55818b68831347139dbb65199eee3031" \
           -H "Content-Type: application/json" \
-          -d '{
- 		"text": "블록킷 메시지입니다.",
-		"blocks": [
-		  {
-			"type": "header",
-			"text": "📢 **주간업무보고 작성 시간",
-			"style": "white"
-    },
-    {
-      "type": "text",
-      "text": "text sample",
-      "inlines": [
-        {
-          "type": "styled",
-          "text": "금요일 오후 4시입니다~ ",
-          "bold": false,
-          "color": "default"
-        }
-      ]
-    },
-    {
-      "type": "button",
-      "text": "바로가기",
-      "style": "default",
-      "action": {
-        "type": "open_system_browser",
-        "name": "button1",
-        "value": "https://drive.google.com/drive/u/0/folders/1nmz8c-qtouAGZpgJAajvTsLujrS3mrpt?ths=true"
-      }
-    }
-  ]
-          }'
+          -d @- <<EOF
+          {
+            "text": "주간 업무 알림",
+            "blocks": [
+              {
+                "type": "header",
+                "text": "📢 주간업무보고 작성 시간",
+                "style": "blue"
+              },
+              {
+                "type": "text",
+                "text": "금요일 오후 4시입니다~ ",
+                "markdown": true
+              },
+              {
+      			"type": "button",
+      			"text": "바로가기",
+      			"style": "default",
+      			"action": {
+        					"type": "open_system_browser",
+        					"name": "button1",
+        					"value": "https://drive.google.com/drive/u/0/folders/1nmz8c-qtouAGZpgJAajvTsLujrS3mrpt?ths=true"
+      					}
+              }
+            ]
+          }
+          EOF
