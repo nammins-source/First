@@ -8,7 +8,7 @@ jobs:
   send_webhook:
     runs-on: ubuntu-latest
     steps:
-	      - name: Send KakaoWork Block Kit Message
+      - name: Send KakaoWork Message
         run: |
           curl -X POST "https://kakaowork.com/bots/hook/55818b68831347139dbb65199eee3031" \
           -H "Content-Type: application/json" \
