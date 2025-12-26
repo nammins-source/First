@@ -8,17 +8,17 @@ jobs:
   send_webhook:
     runs-on: ubuntu-latest
     steps:
-      - name: Send POST Request
+      - name: Send KakaoWork Block Kit Message
         run: |
           curl -X POST "https://kakaowork.com/bots/hook/55818b68831347139dbb65199eee3031" \
           -H "Content-Type: application/json" \
           -d '{
- "text": "블록킷 메시지입니다.",
-  "blocks": [
-    {
-      "type": "header",
-      "text": "📢 **주간업무보고 작성 시간",
-      "style": "white"
+ 		"text": "블록킷 메시지입니다.",
+		"blocks": [
+		  {
+			"type": "header",
+			"text": "📢 **주간업무보고 작성 시간",
+			"style": "white"
     },
     {
       "type": "text",
@@ -34,7 +34,7 @@ jobs:
     },
     {
       "type": "button",
-      "text": "바로가",
+      "text": "바로가기",
       "style": "default",
       "action": {
         "type": "open_system_browser",
