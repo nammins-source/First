@@ -21,19 +21,21 @@ jobs:
               },
               {
                 "type": "text",
-                "text": "금요일 오후 4시입니다~ ",
+                "text": "금요일 오후 4시입니다~",
                 "markdown": true
               },
               {
-      			"type": "button",
-      			"text": "바로가기",
-      			"style": "default",
-      			"action": {
-        					"type": "open_system_browser",
-        					"name": "button1",
-        					"value": "https://drive.google.com/drive/u/0/folders/1nmz8c-qtouAGZpgJAajvTsLujrS3mrpt?ths=true"
-      					}
+                "type": "button",
+                "text": "바로가기",
+                "style": "primary",
+                "action": {
+                  "type": "open_system_browser",
+                  "value": "https://drive.google.com/drive/u/0/folders/1nmz8c-qtouAGZpgJAajvTsLujrS3mrpt?ths=true"
+                }
               }
             ]
           }
           EOF
+          curl -X POST "https://kakaowork.com/bots/hook/55818b68831347139dbb65199eee3031" \
+          -H "Content-Type: application/json" \
+          -d @payload.json
