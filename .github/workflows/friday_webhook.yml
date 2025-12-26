@@ -1,0 +1,17 @@
+name: Send Friday Webhook
+on:
+  workflow_dispatch: # 직접 실행 버튼을 생성함
+  schedule:
+    - cron: '0 7 * * 5' # 매주 금요일 한국 시간 오후 4시 (UTC 07:00)
+
+jobs:
+  send_webhook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send POST Request
+        run: |
+          curl -X POST "https://kakaowork.com/bots/hook/55818b68831347139dbb65199eee3031" \
+          -H "Content-Type: application/json" \
+          -d '{
+            "text": "📢 **주간업무보고 작성 시간**\n\n👉 [바로가기 링크](https://drive.google.com/drive/u/0/folders/1nmz8c-qtouAGZpgJAajvTsLujrS3mrpt?ths=true)"
+          }'
