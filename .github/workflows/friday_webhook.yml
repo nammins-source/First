@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Send KakaoWork Message
-        run: |
+          run: |
           cat << 'EOF' > payload.json
           {
             "text": "주간 업무 알림",
