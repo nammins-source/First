@@ -1,0 +1,40 @@
+name: Send Tuesday Webhook
+on:
+  workflow_dispatch: # Actions 탭에서 'Run workflow' 버튼으로 즉시 테스트 가능
+  schedule:
+    - cron: '0 1 * * 2' # 매주 화요일 오전 10시 (한국 시간)
+
+jobs:
+  send_webhook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send KakaoWork Message
+        run: |
+          curl -X POST "https://kakaowork.com/bots/hook/55818b68831347139dbb65199eee3031" \
+          -H "Content-Type: application/json" \
+          -d @- <<EOF
+          {
+            "text": "화요일 오전 10시 알림",
+            "blocks": [
+              {
+                "type": "header",
+                "text": "📢 주간회의록 하단 이슈 갱신 시간",
+                "style": "blue"
+              },
+              {
+                "type": "text",
+                "text": "화요일 오전 10시 입니다~",
+                "markdown": true
+              },
+              {
+                "type": "button",
+                "text": "바로가기",
+                "style": "primary",
+                "action": {
+                  "type": "open_system_browser",
+                  "value": "https://docs.google.com/spreadsheets/d/1iCDME2uagyXeRY9KiWOOxycE1i4gxHwGCRigYCdvmus/edit?usp=sharing"
+                }
+              }
+            ]
+          }
+          EOF
