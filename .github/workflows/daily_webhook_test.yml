@@ -1,0 +1,18 @@
+name: Daily Webhook Test
+
+on:
+  schedule:
+    # 매일 오전 11시 5분 (한국 시간)
+    - cron: '5 2 * * *'
+  
+  workflow_dispatch:
+
+jobs:
+  send_test_webhook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Daily Test Webhook Request
+        run: |
+          curl -X POST -H "Content-Type: application/json" \
+          -d '{"username": "GitHub Actions Bot (2025)", "content": "매일 11시 5분 예약 테스트 알림입니다."}' \
+          "https://kakaowork.com/bots/hook/55818b68831347139dbb65199eee3031"
