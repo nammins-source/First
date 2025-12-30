@@ -3,7 +3,7 @@ name: Daily Webhook Test
 on:
   schedule:
     # 매일 오전 11시 5분 (한국 시간)
-    - cron: '5 2 * * *'
+    - cron: '0 3 * * *'
   
   workflow_dispatch:
 
